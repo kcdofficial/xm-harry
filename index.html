@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Bersama XM — Partner Resmi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f1e;
+    --navy-900:#0b1626;
+    --navy-800:#101f34;
+    --navy-700:#16283f;
+    --navy-600:#1e344f;
+    --line:#243b58;
+    --gold:#c9a24a;
+    --gold-soft:#e6c877;
+    --teal:#2bb8a6;
+    --ink:#e9edf4;
+    --ink-dim:#9fb0c6;
+    --ink-faint:#6d7f98;
+    --green:#3ecf8e;
+    --red:#e2685f;
+    --mint:#2ecc82;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy-950);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,15,30,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;}
+  .brand-mark{
+    width:30px;height:30px;border-radius:8px;
+    background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-950);font-weight:700;font-size:0.85rem;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .brand small{display:block;font-size:0.65rem;font-weight:500;color:var(--ink-faint);letter-spacing:0.02em;}
+  .nav-cta{
+    background:var(--gold);
+    color:var(--navy-950);
+    padding:10px 20px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:0.9rem;
+    transition:background .18s ease;
+  }
+  .nav-cta:hover{background:var(--gold-soft);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-chart{
+    position:absolute;
+    inset:0;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:0.8rem;color:var(--teal);
+    font-weight:600;margin-bottom:18px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .hero h1{
+    font-size:clamp(2.1rem,4.2vw,3.4rem);
+    line-height:1.08;
+    margin:0 0 20px;
+    font-weight:700;
+  }
+  .hero h1 .accent{color:var(--gold-soft);}
+  .hero p.lead{
+    font-size:1.08rem;
+    line-height:1.65;
+    color:var(--ink-dim);
+    max-width:52ch;
+    margin:0 0 32px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:14px 26px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:0.95rem;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--gold);color:var(--navy-950);}
+  .btn-primary:hover{background:var(--gold-soft);}
+  .btn-ghost{border-color:var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+  .stat-row{
+    display:flex;gap:32px;margin-top:44px;flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;font-family:'Space Grotesk',sans-serif;
+    font-size:1.5rem;color:var(--ink);
+  }
+  .stat span{font-size:0.82rem;color:var(--ink-faint);}
+
+  .hero-panel{
+    background:linear-gradient(180deg,var(--navy-800),var(--navy-900));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px;
+    position:relative;
+  }
+  .hero-panel .panel-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:6px;
+  }
+  .hero-panel .pair{font-weight:600;font-family:'Space Grotesk',sans-serif;}
+  .hero-panel .price{color:var(--green);font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;}
+  .hero-panel .sub{color:var(--ink-faint);font-size:0.8rem;margin-bottom:18px;}
+  .mini-row{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid var(--line);font-size:0.86rem;color:var(--ink-dim);}
+  .mini-row b{color:var(--ink);font-weight:600;}
+  .up{color:var(--green);} .down{color:var(--red);}
+
+  /* ---------- SECTION HEADER ---------- */
+  .section{padding:72px 0;border-bottom:1px solid var(--line);}
+  .section-head{max-width:60ch;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.5rem,2.6vw,2.05rem);margin:0 0 12px;}
+  .section-head p{color:var(--ink-dim);font-size:1rem;line-height:1.6;margin:0;}
+
+  /* ---------- ACCOUNT CARDS ---------- */
+  .account-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .acc-card{
+    background:var(--navy-800);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:34px;
+    display:flex;flex-direction:column;
+    position:relative;
+  }
+  .acc-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:2.3rem;font-weight:700;
+    color:var(--mint);
+    line-height:1;margin-bottom:14px;
+  }
+  .acc-card h3{font-size:1.28rem;margin:0 0 4px;}
+  .acc-card .acc-sub{color:var(--ink-faint);font-size:0.85rem;margin:0 0 16px;}
+  .acc-card p.desc{color:var(--ink-dim);font-size:0.9rem;line-height:1.6;margin:0 0 22px;}
+
+  .acc-steps{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:14px;}
+  .acc-steps li{display:flex;align-items:flex-start;gap:12px;font-size:0.88rem;color:var(--ink-dim);}
+  .acc-steps .badge{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;
+    background:var(--mint);color:var(--navy-950);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.72rem;font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+    margin-top:1px;
+  }
+
+  .info-box{
+    background:var(--navy-950);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:13px 16px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:12px;margin-bottom:12px;
+  }
+  .info-box .info-text{min-width:0;}
+  .info-box .label{
+    display:block;font-size:0.68rem;letter-spacing:0.04em;
+    color:var(--ink-faint);margin-bottom:4px;
+  }
+  .info-box .value{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;color:var(--mint);
+    font-size:0.95rem;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .copy-btn2{
+    flex-shrink:0;
+    background:var(--mint);color:var(--navy-950);
+    border:none;border-radius:7px;
+    padding:8px 16px;font-size:0.78rem;font-weight:700;
+    cursor:pointer;font-family:'Inter',sans-serif;
+    transition:background .15s ease;
+  }
+  .copy-btn2:hover{background:var(--gold-soft);}
+
+  .cta-pill{
+    display:flex;align-items:center;justify-content:center;
+    width:100%;
+    background:var(--mint);color:var(--navy-950);
+    border-radius:999px;
+    padding:16px 20px;
+    font-weight:700;font-size:0.98rem;
+    margin-top:auto;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .cta-pill:hover{background:var(--gold-soft);}
+  .cta-pill:active{transform:scale(0.98);}
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  }
+  .step{
+    background:var(--navy-800);
+    border:1px solid var(--line);
+    border-radius:12px;padding:24px 20px;
+  }
+  .step-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.6rem;color:var(--gold-soft);
+    margin-bottom:12px;font-weight:700;
+  }
+  .step h4{font-size:1rem;margin:0 0 8px;}
+  .step p{font-size:0.85rem;color:var(--ink-dim);margin:0;line-height:1.55;}
+
+  /* ---------- BENEFITS ---------- */
+  .benefit-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .benefit{
+    padding:26px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--navy-900);
+  }
+  .benefit .ic{
+    width:38px;height:38px;border-radius:9px;
+    background:var(--navy-700);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:16px;color:var(--teal);
+  }
+  .benefit h4{margin:0 0 8px;font-size:1rem;}
+  .benefit p{margin:0;color:var(--ink-dim);font-size:0.87rem;line-height:1.6;}
+
+  /* ---------- PARTNER CODE ---------- */
+  .code-band{
+    background:var(--navy-800);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:36px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:24px;flex-wrap:wrap;
+  }
+  .code-band h3{margin:0 0 8px;font-size:1.15rem;}
+  .code-band p{margin:0;color:var(--ink-dim);font-size:0.9rem;max-width:44ch;}
+  .code-box{
+    display:flex;align-items:center;gap:12px;
+    background:var(--navy-950);
+    border:1px dashed var(--gold);
+    border-radius:10px;
+    padding:14px 20px;
+  }
+  .code-box .code{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.3rem;font-weight:700;letter-spacing:0.08em;color:var(--gold-soft);
+  }
+  .copy-btn{
+    background:var(--navy-700);border:1px solid var(--line);
+    color:var(--ink);border-radius:7px;padding:8px 14px;
+    font-size:0.8rem;font-weight:600;cursor:pointer;
+  }
+  .copy-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:40px 0 60px;}
+  footer .wrap{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:20px;
+  }
+  footer .foot-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;}
+  footer p{color:var(--ink-faint);font-size:0.78rem;line-height:1.7;max-width:64ch;margin:10px 0 0;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .account-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .code-band{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">XM</div>
+      <div>
+        Trading Partner
+        <small>Introducing Broker Resmi</small>
+      </div>
+    </div>
+    <a class="nav-cta" href="https://affs.click/t2cff" target="_blank" rel="noopener">Buka Akun</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-chart" viewBox="0 0 1180 460" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2bb8a6" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#2bb8a6" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polyline points="0,340 90,300 180,330 270,250 360,280 450,190 540,230 630,150 720,190 810,110 900,150 990,90 1080,130 1180,70"
+      fill="none" stroke="#2bb8a6" stroke-width="2" opacity="0.7"/>
+    <polygon points="0,340 90,300 180,330 270,250 360,280 450,190 540,230 630,150 720,190 810,110 900,150 990,90 1080,130 1180,70 1180,460 0,460"
+      fill="url(#fade)"/>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Partner Resmi XM Group</div>
+      <h1>Trading forex, saham, dan komoditas bersama <span class="accent">XM</span></h1>
+      <p class="lead">Buka akun trading melalui link partner ini untuk mendapatkan pendampingan langsung, materi edukasi, dan dukungan komunitas — tanpa biaya tambahan dari harga normal XM.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://affs.click/t2cff" target="_blank" rel="noopener">Buat Akun Baru</a>
+        <a class="btn btn-ghost" href="#akun">Lihat Pilihan Akun</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>0.6 pips</b><span>Spread mulai dari</span></div>
+        <div class="stat"><b>1000+</b><span>Instrumen tersedia</span></div>
+        <div class="stat"><b>Rp 1 jt</b><span>Minimal deposit</span></div>
+        <div class="stat"><b>24/5</b><span>Akses pasar</span></div>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="panel-head">
+        <span class="pair">XAU/USD</span>
+        <span class="price">2.417,80</span>
+      </div>
+      <div class="sub">Emas Spot · diperbarui live saat market buka</div>
+      <div class="mini-row"><span>EUR/USD</span><b class="up">1,0862 ▲</b></div>
+      <div class="mini-row"><span>GBP/USD</span><b class="down">1,2731 ▼</b></div>
+      <div class="mini-row"><span>USD/JPY</span><b class="up">149,32 ▲</b></div>
+      <div class="mini-row"><span>US30</span><b class="up">41.205 ▲</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="akun">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Pilih cara bergabung</h2>
+      <p>Belum punya akun XM sama sekali, atau sudah trading dan ingin menambah akun di bawah partner ini? Dua-duanya bisa lewat link yang sama.</p>
+    </div>
+
+    <div class="account-grid">
+      <div class="acc-card">
+        <div class="acc-num">01</div>
+        <h3>Akun Tambahan</h3>
+        <p class="acc-sub">Sudah punya akun XM</p>
+        <p class="desc">Tidak perlu pindah partner — cukup buka akun tambahan di bawah kode partner ini, dan pendampingan berlaku otomatis untuk akun baru tersebut.</p>
+        <ul class="acc-steps">
+          <li><span class="badge">1</span>Klik tombol di bawah untuk masuk ke Members Area XM</li>
+          <li><span class="badge">2</span>Buka akun tambahan (additional account)</li>
+          <li><span class="badge">3</span>Pilih platform MT4 / MT5</li>
+          <li><span class="badge">4</span>Masukkan kode partner MVW3G</li>
+        </ul>
+        <div class="info-box">
+          <div class="info-text">
+            <span class="label">LINK PARTNER</span>
+            <span class="value" id="link1">affs.click/t2cff</span>
+          </div>
+          <button class="copy-btn2" onclick="copyValue('link1','https://affs.click/t2cff')">Salin</button>
+        </div>
+        <div class="info-box">
+          <div class="info-text">
+            <span class="label">KODE PARTNER</span>
+            <span class="value" id="code1">MVW3G</span>
+          </div>
+          <button class="copy-btn2" onclick="copyValue('code1','MVW3G')">Salin</button>
+        </div>
+        <a class="cta-pill" href="https://affs.click/t2cff" target="_blank" rel="noopener">Hubungkan Akun XM →</a>
+      </div>
+
+      <div class="acc-card">
+        <div class="acc-num">02</div>
+        <h3>Akun Baru</h3>
+        <p class="acc-sub">Belum punya akun XM</p>
+        <p class="desc">Buka akun lewat link partner ini. Harga trading tetap mengikuti ketentuan XM yang berlaku, tanpa biaya tambahan dari partner.</p>
+        <ul class="acc-steps">
+          <li><span class="badge">1</span>Klik tombol di bawah untuk membuka akun XM baru</li>
+          <li><span class="badge">2</span>Masukkan kode partner MVW3G saat pendaftaran</li>
+          <li><span class="badge">3</span>Lengkapi data diri dan verifikasi di XM</li>
+          <li><span class="badge">4</span>Mulai trading — akun otomatis tertaut ke partner ini</li>
+        </ul>
+        <div class="info-box">
+          <div class="info-text">
+            <span class="label">KODE PARTNER</span>
+            <span class="value" id="code2">MVW3G</span>
+          </div>
+          <button class="copy-btn2" onclick="copyValue('code2','MVW3G')">Salin</button>
+        </div>
+        <div class="info-box">
+          <div class="info-text">
+            <span class="label">LINK PENDAFTARAN</span>
+            <span class="value" id="link2">affs.click/t2cff</span>
+          </div>
+          <button class="copy-btn2" onclick="copyValue('link2','https://affs.click/t2cff')">Salin</button>
+        </div>
+        <a class="cta-pill" href="https://affs.click/t2cff" target="_blank" rel="noopener">Buka Akun XM →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Langkah pendaftaran</h2>
+      <p>Alur yang sama berlaku baik untuk akun baru maupun akun tambahan.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Klik link partner</h4>
+        <p>Buka link pendaftaran resmi agar akun otomatis tertaut ke partner ini.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Isi data diri</h4>
+        <p>Lengkapi nama, email, dan nomor telepon sesuai identitas yang berlaku.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Verifikasi dokumen</h4>
+        <p>Unggah KTP/paspor untuk verifikasi identitas sesuai regulasi.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Deposit &amp; mulai trading</h4>
+        <p>Danai akun melalui metode yang tersedia, lalu mulai trading di platform XM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Kenapa lewat partner ini</h2>
+      <p>Harga trading tetap sama seperti mendaftar langsung ke XM — bedanya ada pendampingan tambahan.</p>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="ic">◐</div>
+        <h4>Pendampingan langsung</h4>
+        <p>Tanya jawab seputar platform, penarikan dana, hingga dasar manajemen risiko.</p>
+      </div>
+      <div class="benefit">
+        <div class="ic">▤</div>
+        <h4>Materi &amp; analisa</h4>
+        <p>Ringkasan pergerakan pasar dan catatan edukasi dibagikan secara berkala.</p>
+      </div>
+      <div class="benefit">
+        <div class="ic">◈</div>
+        <h4>Tanpa biaya tambahan</h4>
+        <p>Spread dan komisi mengikuti struktur harga XM yang berlaku umum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="code-band">
+      <div>
+        <h3>Kode partner</h3>
+        <p>Masukkan kode ini bila diminta saat membuka akun baru, atau saat menambah akun dari Member Area.</p>
+      </div>
+      <div class="code-box">
+        <span class="code" id="partnerCode">MVW3G</span>
+        <button class="copy-btn" onclick="copyCode()">Salin</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="foot-brand">Trading Partner · XM</div>
+      <p>Trading forex dan CFD melibatkan risiko kerugian modal dan tidak cocok untuk semua investor. Halaman ini dibuat oleh partner independen (Introducing Broker) dan bukan merupakan situs resmi XM Group. Syarat, ketentuan, serta bonus/promosi mengikuti kebijakan XM yang berlaku.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyCode(){
+  const text = document.getElementById('partnerCode').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.querySelector('.copy-btn');
+    const original = btn.innerText;
+    btn.innerText = 'Tersalin';
+    setTimeout(()=>{ btn.innerText = original; }, 1500);
+  });
+}
+
+function copyValue(elId, value){
+  navigator.clipboard.writeText(value).then(()=>{
+    const el = document.getElementById(elId);
+    const btn = el.closest('.info-box').querySelector('.copy-btn2');
+    const original = btn.innerText;
+    btn.innerText = 'Tersalin';
+    setTimeout(()=>{ btn.innerText = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>
